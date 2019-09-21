@@ -1,0 +1,21 @@
+{
+  "name": "services",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chrono": "^1.0.5",
+    "chrono-node": "^1.3.11",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.1",
+    "express": "^4.14.1",
+    "firebase-admin": "~7.1.1",
+    "firebase-functions": "^2.2.1",
+    "@google-cloud/language": "^3.3.0"
+  }
+}
