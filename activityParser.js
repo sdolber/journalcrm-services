@@ -70,13 +70,11 @@ const parseTimes = (times) => {
     let result = {"time": "", "date": ""};
     times.forEach(time => {
         if (time.start) {
-            if (time.start.knownValues.day) {
-                result.date = chrono.casual.parseDate(time.start.knownValues.year + '-' + 
-                                                    time.start.knownValues.month + '-' + 
-                                                    time.start.knownValues.day);
-            }
-            else if (time.start.knownValues.hour) {
+            if (time.start.knownValues.hour) {
                 result.time = time.start.knownValues.hour + ":" + time.start.knownValues.minute;
+            }
+            else if (time.start.knownValues.day || time.start.impliedValues.day) {
+                result.date = time.start.date();
             }
         }
     });
@@ -90,7 +88,8 @@ module.exports = async (text) => {
         "type": "PERSONAL",
         "persons": [],
         "organization": "",
-        "sentiment": ""
+        "sentiment": "",
+        "content": text
     }
 
     const lsClient = new language.LanguageServiceClient();
