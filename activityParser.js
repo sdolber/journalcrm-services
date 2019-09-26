@@ -4,7 +4,7 @@ const language = require('@google-cloud/language');
 const parseActivityType = (entity, originalValue) => {
     let lentityname = entity.name.toLowerCase();
     
-    if (entity.salience > 0.3) {
+    if (entity.salience > 0.2) {
         if ((entity.type === "WORK_OF_ART" || entity.type === "OTHER") && lentityname === "email") {
             return "EMAIL";
         }
@@ -26,7 +26,7 @@ const parseActivityTypeFromSyntax = (activity, tokens) => {
         if (part.partOfSpeech.tag === "VERB" && part.partOfSpeech.tense === "PAST") {
             let llemma = part.lemma.toLowerCase();
             
-            if (llemma === "call" || llemma === "talk" || llemma === "dial" || llemma === "phone") {
+            if (llemma === "call" || llemma === "dial" || llemma === "phone") {
                 activity.type = "PHONE";
             }
             else if (llemma === "email" || llemma === "write") {
@@ -58,7 +58,7 @@ const parseEntities = (activity, entities) => {
         }
 
         // check sentiment
-        if (entity.sentiment.magnitude > 0.3) {
+        if (entity.sentiment.magnitude > 0.5) {
             activity.sentiment = entity.sentiment.score > 0? "GOOD" : "BAD";
         }
     });
