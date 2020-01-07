@@ -24,7 +24,7 @@ const activityResolvers = {
     activity: () => {  },
   },
   Mutation: {
-    process: async (_, { text }, { dataSources }) => { 
+    processActivity: async (_, { text }, { dataSources }) => { 
         let activity;
 
         activity = await dataSources.activityAPI.processEntry(text);
