@@ -6,7 +6,7 @@ const activityTypeDef = gql`
     }
 
     extend type Mutation {
-        process(text: String!): Activity
+        processActivity(text: String!): Activity
     }   
 
     type Activity {
